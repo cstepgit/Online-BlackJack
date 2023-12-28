@@ -1,0 +1,29 @@
+.layout {
+    width: auto;
+    height: auto;
+  
+    display: grid;
+    grid:
+      "header header header" auto
+      "leftSide body rightSide" 1fr
+      "footer footer footer" auto
+      / auto 1fr auto;
+    gap: 8px;
+  }
+  
+  .header { grid-area: header; 
+background-color: black;}
+  .leftSide { grid-area: leftSide;
+background-color: black; }
+  .body { 
+    grid-area: body;
+    background-color: black; 
+}
+  .rightSide {
+     grid-area: rightSide; 
+     background-color: black; 
+    }
+  .footer { 
+    grid-area: footer;
+     background-color: black; 
+    }
