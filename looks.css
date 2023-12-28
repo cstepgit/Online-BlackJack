@@ -1,29 +1,56 @@
-.layout {
-    width: auto;
-    height: auto;
-  
-    display: grid;
-    grid:
-      "header header header" auto
-      "leftSide body rightSide" 1fr
-      "footer footer footer" auto
-      / auto 1fr auto;
-    gap: 8px;
-  }
-  
-  .header { grid-area: header; 
-background-color: black;}
-  .leftSide { grid-area: leftSide;
-background-color: black; }
-  .body { 
-    grid-area: body;
-    background-color: black; 
+@font-face {
+    font-family:PlayFair ;
+    src: url(Fonts/PlayfairDisplay-VariableFont_wght.ttf);
 }
-  .rightSide {
-     grid-area: rightSide; 
-     background-color: black; 
-    }
-  .footer { 
-    grid-area: footer;
-     background-color: black; 
-    }
+.button{
+    height: 100px;
+    width: 200px;
+    border: none;
+    margin: 10px;
+    padding: 16px 32px;
+    border-radius: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    font-size: 30px;
+    font-family: PlayFair;
+    box-shadow: 5px -8px 15px rgba(225,255,255,0.1);
+    
+}
+
+#buttons{
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: fixed;
+    width: auto;
+    background: transparent;
+
+    border-radius: 16px;
+   
+}
+
+.button:hover{
+    background-color: #000e33;
+    
+}
+
+body{
+    background: linear-gradient(45deg,#0a0a0a,#3a4452);
+}
+
+
+
+
+
+
+
