@@ -47,9 +47,23 @@
 }
 
 body{
-    background: linear-gradient(45deg,#0a0a0a,#3a4452);
+    background: #3a4452;
 }
 
+#output {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: transparent;
+    height: 30px;
+    color: white;
+}
+.container{
+    overflow: auto;
+    height:60px;
+    border: 1px solid #ccc;
+    resize: both;
+    max-width: 70px;
+}
 
 
 
