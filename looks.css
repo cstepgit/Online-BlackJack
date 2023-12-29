@@ -36,15 +36,10 @@
     position: fixed;
     width: auto;
     background: transparent;
-
     border-radius: 16px;
    
 }
 
-.button:hover{
-    
-   
-}
 
 body{
     background: #3a4452;
@@ -59,10 +54,8 @@ body{
 }
 .container{
     overflow: auto;
-    height:60px;
+    height:100px;
     border: 1px solid #ccc;
-    resize: both;
-    max-width: 70px;
 }
 
 
