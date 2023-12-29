@@ -16,7 +16,8 @@ export class Deck {
       for (let value = 2; value <= 10; value++) {
         for (const suit of suits) {
           fileName = `PNG-cards-1.3/${value}_of_${suit}.png`;
-          const card = new Card(value, suit, fileName);
+          let card = new Card(value, suit, fileName);
+          console.log(fileName);
           this.cards.push(card);
         }
       }
@@ -26,7 +27,7 @@ export class Deck {
         for (const suit of suits) {
           fileName = `PNG-cards-1.3/${faceCards[k]}_of_${suit}.png`;
           console.log(fileName);
-          const card = new Card(10, suit, fileName);
+          let card = new Card(10, suit, fileName);
           this.cards.push(card);
         }
       }
@@ -34,9 +35,43 @@ export class Deck {
       // for each suit, add a value 11
       for (const suit of suits) {
         fileName = `PNG-cards-1.3/ace_of_${suit}.png`;
-        const card = new Card(11, suit, fileName);
+        let card = new Card(11, suit, fileName);
+        console.log(fileName);
         this.cards.push(card);
       }
     }
+
+    givePlayerCard() {
+    let cardGiven = false;
+    let index = 0;
+    let playerCard;
+    while (!cardGiven && index < totalCards) {
+        if (availableCard(cards.get(index))) {
+            Deck.cards.get(index).setPlayerHand(true);
+            //duplicated card being given to player to add to the player array
+            playerCard = new Card(Deck.cards.get(index).getValue(), cards.get(index).getSuit(), cards.get(index).getCardName());
+            //displays card being given to entity
+            cardGiven = true;
+            availableCards--;
+        } else index++;
+    }
+    return playerCard;
+}
+
+shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
+}
+ printCardNames(cards) {
+  cards.forEach(card => {
+    console.log(card.fileName);
+  });
+}
+
+}
+
+
+
   

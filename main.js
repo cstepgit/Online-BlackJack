@@ -1,5 +1,5 @@
-import { Deck } from './deck.js';
-
+import { Deck, givePlayerCard } from './deck.js';
+let myDeck = new Deck();
 function print1() {
   var outputElement = document.getElementById('output');
 
@@ -12,16 +12,21 @@ function print1() {
 }
 
 function scrollToBottom() {
-  var outputElement = document.getElementById('output');
+  let outputElement = document.getElementById('output');
   outputElement.scrollTop = outputElement.scrollHeight;
   outputElement.innerHTML += "Scrolling<br>";
-
-  const myDeck = new Deck();
   console.log(myDeck.cards);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
   // Add event listener after the DOM has loaded
   document.getElementById('hit').addEventListener('click', print1);
-  
+ myDeck.printCardNames(); 
 });
+
+
+
+
+
+
+

@@ -1,10 +1,10 @@
 export class Card {
     constructor(valueSet, suitSet, cardNameSet){
-       let dealerHand;
-       let playerHand;
-       let discard;
-      let suit;
-      let value;
+        let dealerHand;
+        let playerHand;
+        let discard;
+        let suit;
+        let value;
         let cardName;
     
         dealerHand = false;
