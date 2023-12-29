@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
     constructor(valueSet, suitSet, cardNameSet){
         let dealerHand;
         let playerHand;

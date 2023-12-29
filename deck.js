@@ -1,6 +1,6 @@
-import { Card } from './card.js';
+import Card from './card.js';
 
-export class Deck {
+export default class Deck{
     constructor() {
       this.cards = [];
       const suits = ['hearts', 'clubs', 'diamonds', 'spades'];
@@ -40,8 +40,8 @@ export class Deck {
         this.cards.push(card);
       }
     }
-
-    givePlayerCard() {
+  }
+  export function givePlayerCard() {
     let cardGiven = false;
     let index = 0;
     let playerCard;
@@ -58,19 +58,19 @@ export class Deck {
     return playerCard;
 }
 
-shuffleArray(array) {
+export function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
- printCardNames(cards) {
+ export function printCardNames(cards) {
   cards.forEach(card => {
     console.log(card.fileName);
   });
 }
 
-}
+
 
 
 
