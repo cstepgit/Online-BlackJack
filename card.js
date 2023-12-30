@@ -14,4 +14,7 @@ export default class Card {
         value = valueSet;
         cardName = cardNameSet;
     }
+    get fileName(){
+        return this.cardName; 
+    }
 }

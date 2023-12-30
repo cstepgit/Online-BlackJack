@@ -15,7 +15,7 @@ export default class Deck{
       // for values 2-9 of each suit
       for (let value = 2; value <= 10; value++) {
         for (const suit of suits) {
-          fileName = `PNG-cards-1.3/${value}_of_${suit}.png`;
+          fileName = `Cards/${value}_of_${suit}.png`;
           let card = new Card(value, suit, fileName);
           console.log(fileName);
           this.cards.push(card);
@@ -25,7 +25,7 @@ export default class Deck{
       // for each suit, add 4 values of 10
       for (let k = 0; k <= 2; k++) {
         for (const suit of suits) {
-          fileName = `PNG-cards-1.3/${faceCards[k]}_of_${suit}.png`;
+          fileName = `Cards/${faceCards[k]}_of_${suit}.png`;
           console.log(fileName);
           let card = new Card(10, suit, fileName);
           this.cards.push(card);
@@ -34,7 +34,7 @@ export default class Deck{
   
       // for each suit, add a value 11
       for (const suit of suits) {
-        fileName = `PNG-cards-1.3/ace_of_${suit}.png`;
+        fileName = `Cards/ace_of_${suit}.png`;
         let card = new Card(11, suit, fileName);
         console.log(fileName);
         this.cards.push(card);
@@ -49,10 +49,10 @@ export default class Deck{
         if (availableCard(cards.get(index))) {
             Deck.cards.get(index).setPlayerHand(true);
             //duplicated card being given to player to add to the player array
-            playerCard = new Card(Deck.cards.get(index).getValue(), cards.get(index).getSuit(), cards.get(index).getCardName());
+            playerCard = new Card(Deck.cards.get(index).getValue(), Deck.cards.get(index).getSuit(),  Deck.cards.get(index).getCardName());
             //displays card being given to entity
             cardGiven = true;
-            availableCards--;
+            Deck.availableCards = Deck.availableCards-1; 
         } else index++;
     }
     return playerCard;
