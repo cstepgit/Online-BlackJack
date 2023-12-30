@@ -9,6 +9,13 @@ function print1() {
   // Scroll to the bottom of the box
   console.log("TEST");
   scrollToBottom();
+  var box = document.getElementById('dealer');
+  var img = document.createElement('img');
+  img.src = 'DSC01826.jpg'; // Replace with the path to your image
+  img.classList.add('card');
+  // Append the image to the box
+  box.appendChild(img);
+
 }
 
 function scrollToBottom() {
@@ -21,7 +28,6 @@ function scrollToBottom() {
 document.addEventListener('DOMContentLoaded', function () {
   // Add event listener after the DOM has loaded
   document.getElementById('hit').addEventListener('click', print1);
- 
 });
 
 
