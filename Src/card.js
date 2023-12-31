@@ -1,5 +1,5 @@
 export default class Card {
-    constructor(valueSet, suitSet, cardNameSet){
+    constructor(valueSet, suitSet, cardNameSet) {
         this.dealerHand = false;
         this.playerHand = false;
         this.discard = false;
@@ -7,7 +7,7 @@ export default class Card {
         this.value = valueSet;
         this.cardName = cardNameSet;
     }
-    getValue(){
+    getValue() {
         return this.value;
     }
 }

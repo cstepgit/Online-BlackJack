@@ -46,7 +46,10 @@ body{
    
    
 }
-.button:hover{
+.active-button{
+    
+}
+.button:not([disabled]):hover{
 color: black;
 background-color: white;
 }
