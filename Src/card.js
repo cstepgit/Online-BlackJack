@@ -7,4 +7,7 @@ export default class Card {
         this.value = valueSet;
         this.cardName = cardNameSet;
     }
+    getValue(){
+        return this.value;
+    }
 }
