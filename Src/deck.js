@@ -87,6 +87,12 @@ export default class Deck{
   availableCard(card) {
     return !card.playerHand && !card.dealerHand && !card.discard;
 }
+shuffleDeck() {
+  for (let i = this.cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
+  }
+}
 }
 
 
