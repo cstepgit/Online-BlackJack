@@ -1,13 +1,12 @@
 import Card from './card.js';
 
 export default class Deck{
- 
     constructor() {
       this.cards = [];
       const suits = ['hearts', 'clubs', 'diamonds', 'spades'];
       const faceCards = ['jack', 'queen', 'king'];
-      let availableCards = 52;
-      let totalCards = 52;
+      this.availableCards = 52;
+      this.totalCards = 52;
   
       faceCards.splice(0, 0, 'jack', 'king', 'queen');
   
@@ -41,34 +40,53 @@ export default class Deck{
         this.cards.push(card);
       }
     }
+   giveDealerCard() {
+     let cardGiven = false;
+     let index = 0;
+      let dealerCard;  
+      while (!cardGiven && index < this.totalCards) {
+          if (this.availableCard(this.cards[index])) {
+             this.cards[index].dealerHand = true;  
+              //duplicated card being given to player to add to the player array
+              dealerCard = new Card(
+                this.cards[index].value,
+                this.cards[index].suit,
+                this.cards[index].cardName
+              );
+              //displays card being given to entity
+              cardGiven = true;
+              this.availableCards--;
+          } else index++;
+      }
+      return dealerCard;
   }
-  export function givePlayerCard() {
+  givePlayerCard() {
     let cardGiven = false;
     let index = 0;
     let playerCard;
-    while (!cardGiven && index < totalCards) {
-        if (availableCard(cards.get(index))) {
-            Deck.cards.get(index).setPlayerHand(true);
-            //duplicated card being given to player to add to the player array
-            playerCard = new Card(Deck.cards.get(index).getValue(), Deck.cards.get(index).getSuit(),  Deck.cards.get(index).getCardName());
-            //displays card being given to entity
-            cardGiven = true;
-            Deck.availableCards = Deck.availableCards-1; 
-        } else index++;
+  
+    while (!cardGiven && index < this.totalCards) {
+      if (this.availableCard(this.cards[index])) {
+        this.cards[index].playerHand = true;
+        // Duplicated card being given to the player to add to the player array
+        playerCard = new Card(
+          this.cards[index].value,
+          this.cards[index].suit,
+          this.cards[index].cardName,
+        );
+       playerCard.playerHand = true; 
+        // Displays the card being given to the entity
+        cardGiven = true;
+        this.availableCards--;
+      } else {
+        index++;
+      }
     }
     return playerCard;
-}
-
-export function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
   }
+  availableCard(card) {
+    return !card.playerHand && !card.dealerHand && !card.discard;
 }
- export function printCardNames(cards) {
-  cards.forEach(card => {
-    console.log(card.fileName);
-  });
 }
 
 

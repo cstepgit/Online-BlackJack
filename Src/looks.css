@@ -2,6 +2,15 @@
     font-family:PlayFair ;
     src: url(Fonts/PlayfairDisplay-VariableFont_wght.ttf);
 }
+body{
+    background: #3a4452;
+}
+.title{
+    text-align: center;
+    color: white;
+    user-select:none;
+    text-shadow: 5px -8px 15px rgba(225,255,255,0.1);;
+}
 .button{
     height: 100px;
     width: 200px;
@@ -16,15 +25,12 @@
     transition-duration: 0.4s;
     cursor: pointer;
     background-color: transparent;
-    color: white;
     font-size: 30px;
-    font-family: PlayFair;
     box-shadow: 5px -8px 15px rgba(225,255,255,0.1);
     outline: solid white 1px;
-   
+    color: white;
     
 }
-
 #buttons{
   
     display: flex;
@@ -39,15 +45,12 @@
    
    
 }
-
 .button:hover{
 color: black;
 background-color: white;
 }
 
-body{
-    background: #3a4452;
-}
+
 
 #output {
     margin-top: 10px;
@@ -55,6 +58,7 @@ body{
     background-color: transparent;
     height: 30px;
     color: white;
+    
 }
 .container{
     overflow: auto;
@@ -65,26 +69,24 @@ body{
     display: flex;
   }
 
-#dealerCards{
+#dealerCardsDisplay{
     width: auto;
-    max-height: 120px;
+    height: 200px;
     margin: 5px; ;
     overflow: hidden;
     margin: 5px;
     position: relative;
     display: flex;
+    align-items: center;
+    border: solid 5px black;
 }
-/* changes all images to be 100x100 */
-img{
-    width: 100px; /* Adjust as needed */
-    height: 100px; /* Adjust as needed */
-    max-width: 100px;
-    max-height: 100px;
+.card{
+  
+    max-width: 200px;
+    max-height: 200px;
     object-fit: cover;
     margin: 5px; 
     box-shadow: 5px -8px 15px rgba(225,255,255,0.1);
-}
-.card{
     width: 100%; 
       height: 100%; 
       object-fit: cover;
@@ -92,8 +94,19 @@ img{
 .cardDisplay{
     display: flex;
       justify-content: space-between; /* Adjust as needed */
-      align-items: center; /* Adjust as needed */
-    
+      align-items: center; /* Adjust as needed */ 
+}
+#playerCardsDisplay{
+    width: auto;
+  
+    height: 200px;
+    margin: 5px; ;
+    overflow: hidden;
+    margin: 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: solid 5px black;
 }
 
 
