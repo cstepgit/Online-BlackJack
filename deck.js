@@ -1,6 +1,7 @@
 import Card from './card.js';
 
 export default class Deck{
+ 
     constructor() {
       this.cards = [];
       const suits = ['hearts', 'clubs', 'diamonds', 'spades'];
@@ -10,14 +11,14 @@ export default class Deck{
   
       faceCards.splice(0, 0, 'jack', 'king', 'queen');
   
+      
       let fileName;
-  
       // for values 2-9 of each suit
       for (let value = 2; value <= 10; value++) {
         for (const suit of suits) {
           fileName = `Cards/${value}_of_${suit}.png`;
           let card = new Card(value, suit, fileName);
-          console.log(fileName);
+         
           this.cards.push(card);
         }
       }
@@ -26,7 +27,7 @@ export default class Deck{
       for (let k = 0; k <= 2; k++) {
         for (const suit of suits) {
           fileName = `Cards/${faceCards[k]}_of_${suit}.png`;
-          console.log(fileName);
+      
           let card = new Card(10, suit, fileName);
           this.cards.push(card);
         }
@@ -36,7 +37,7 @@ export default class Deck{
       for (const suit of suits) {
         fileName = `Cards/ace_of_${suit}.png`;
         let card = new Card(11, suit, fileName);
-        console.log(fileName);
+       
         this.cards.push(card);
       }
     }

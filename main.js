@@ -9,19 +9,14 @@ function print1() {
 
   // Scroll to the bottom of the box
   console.log("TEST");
-  scrollToBottom();
 
-  var card = myDeck.cards[1];
-  printCard(card.fileName);
+  console.log(myDeck.cards[3]);
+  printCard(myDeck.cards[2].fileName);
+  
 
 }
 
-function scrollToBottom() {
-  let outputElement = document.getElementById('output');
-  outputElement.scrollTop = outputElement.scrollHeight;
-  outputElement.innerHTML += "Scrolling<br>";
-  console.log(myDeck);
-}
+
 
 document.addEventListener('DOMContentLoaded', function () {
   // Add event listener after the DOM has loaded
@@ -29,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function printCard(fileName){
+  console.log(fileName);
   var box = document.getElementById('dealer');
   var img = document.createElement('img');
   img.src = fileName; // Replace with the path to your image

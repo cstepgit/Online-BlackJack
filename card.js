@@ -1,20 +1,17 @@
 export default class Card {
     constructor(valueSet, suitSet, cardNameSet){
-        let dealerHand;
-        let playerHand;
-        let discard;
-        let suit;
-        let value;
-        let cardName;
+      
     
-        dealerHand = false;
-        playerHand = false;
-        discard = false;
-        suit = suitSet;
-        value = valueSet;
-        cardName = cardNameSet;
+        this.dealerHand = false;
+        this.playerHand = false;
+        this.discard = false;
+        this.suit = suitSet;
+        this.value = valueSet;
+        this.cardName = cardNameSet;
     }
     get fileName(){
+        console.log(this.cardName);
         return this.cardName; 
+        
     }
 }
