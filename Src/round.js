@@ -9,6 +9,12 @@ export default class Round {
     this.dealerHand = new Hand();
     this.playerCardScore = 0;
     this.dealerCardScore = 0;
+
+    this.startButton = document.getElementById('start');
+    this.hitButton = document.getElementById('hit');
+    this.standButton = document.getElementById('stand');
+    this.newRoundButton = document.getElementById('newRound');
+
     // 0 win status is dealer win, 1 win status is tie, 2 win status in player win.
     this.winStatus = 0;
     this.BLACKJACK = 21;
@@ -59,18 +65,23 @@ export default class Round {
     playerScoreText.innerHTML = this.playerCardScore;
   }
   win(winner) {
-    let newRoundButton = document.getElementById('newRound'); 
-    newRoundButton.disabled = false; 
+    this.disableHitStandButtons();
+    let newRoundButton = document.getElementById('newRound');
+    newRoundButton.disabled = false;
     console.log(winner, " WON");
-  
+    newRoundButton.disabled = false;
+
   }
 
   dealerTurn() {
     let dealerCardsBox = document.getElementById('dealer');
     console.log("DEALER TURN");
+    if (this.dealerCardScore > this.playerCardScore || this.dealerCardScore < this.BLACKJACK) {
+      this.win("Dealer");
+    }
     while (this.dealerCardScore < this.playerCardScore) {
       //while it's less than we need a card so give dealer the card
-      this.createCardElement(this.getDealerCard(this.deck), dealerCardsBox );
+      this.createCardElement(this.getDealerCard(this.deck), dealerCardsBox);
       //calculate the score with that new card
       this.dealerCardScore = this.dealerHand.calculateScore();
       this.updateScoreDisplay();
@@ -78,6 +89,8 @@ export default class Round {
       if (this.dealerCardScore > this.BLACKJACK) {
         this.win("Player");
         break;
+      } else if (this.dealerCardScore > this.playerCardScore) {
+        this.win("Dealer");
       }
     }
   }
@@ -96,6 +109,10 @@ export default class Round {
     while (container.firstChild) {
       container.removeChild(container.firstChild);
     }
+  }
+  disableHitStandButtons() {
+    this.hitButton.disabled = true;
+    this.standButton.disabled = true;
   }
 }
 

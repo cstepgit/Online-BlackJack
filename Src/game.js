@@ -88,25 +88,27 @@ export default class Game {
         this.round.updateScoreDisplay();
         if (this.round.playerCardScore > this.round.BLACKJACK) {
             console.log("Player Bust");
-            this.round.win(this.dealer);
+            this.round.win("Dealer");
+        }
+        else if (this.round.playerCardScore == this.round.BLACKJACK) {
+            this.round.dealerTurn();
         }
     }
     //  Called when player clicks stand 
     playerStand() {
         console.log("Player stand");
-        this.hitButton.disabled = false;
-        this.standButton.disabled = false;
+        this.round.disableHitStandButtons();
         this.round.dealerTurn();
     }
 
     newRound() {
-         //  Deals and displays two cards for each player and dealer
-         this.round.removeAllCards();
-         // Enables the hit and stand button once round has started 
-         this.hitButton.disabled = false;
-         this.standButton.disabled = false;
-         this.startButton.disabled = true;
-
+        //  Deals and displays two cards for each player and dealer
+        this.round.removeAllCards();
+        // Enables the hit and stand button once round has started 
+        this.hitButton.disabled = false;
+        this.standButton.disabled = false;
+        this.startButton.disabled = true;
+        this.newRoundButton.disabled = true;
         this.round = new Round(this.myDeck);
         this.roundSetUp();
         this.round.updateScoreDisplay();
