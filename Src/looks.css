@@ -11,7 +11,7 @@ body{
     user-select:none;
     text-shadow: 5px -8px 15px rgba(225,255,255,0.1);;
 }
-.button{
+.button:enabled{
     height: 100px;
     width: 200px;
     border: none;
@@ -23,17 +23,33 @@ body{
     display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
-    cursor: pointer;
     background-color: transparent;
     font-size: 30px;
     box-shadow: 5px -8px 15px rgba(225,255,255,0.1);
     outline: solid white 1px;
     color: white;
     font-family: PlayFair;
-    
+}
+.button:disabled{
+    height: 100px;
+    width: 200px;
+    border: none;
+    margin: 10px;
+    padding: 16px 32px;
+    border-radius: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    background-color: transparent;
+    font-size: 30px;
+    box-shadow: 5px -8px 15px rgba(225,255,255,0.1);
+    outline: solid rgba(255, 255, 255, 0.313) 1px;
+    color: rgba(255, 255, 255, 0.313);
+    font-family: PlayFair;
 }
 #buttons{
-  
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,18 +59,13 @@ body{
     position: fixed;
     width: auto;
     background: transparent;
-   
-   
 }
-.active-button{
-    
-}
+/* When a button is enabled and hovered */
 .button:not([disabled]):hover{
 color: black;
 background-color: white;
+cursor: pointer;
 }
-
-
 
 #output {
     margin-top: 10px;
@@ -64,14 +75,7 @@ background-color: white;
     color: white;
     
 }
-.container{
-    overflow: auto;
-    height:100px;
-    border: 1px solid #ccc;
-}
-.container2 {
-    display: flex;
-  }
+
 
 #dealerCardsDisplay{
     width: auto;
@@ -82,7 +86,6 @@ background-color: white;
     position: relative;
     display: flex;
     align-items: center;
-    border: solid 5px black;
 }
 .card{
   
@@ -97,8 +100,9 @@ background-color: white;
 }
 .cardDisplay{
     display: flex;
-      justify-content: space-between; /* Adjust as needed */
+      justify-content: space-between; 
       align-items: center; /* Adjust as needed */ 
+     
 }
 #playerCardsDisplay{
     width: auto;
@@ -110,7 +114,7 @@ background-color: white;
     position: relative;
     display: flex;
     align-items: center;
-    border: solid 5px black;
+
 }
 .cardTotal{
     text-align: center;

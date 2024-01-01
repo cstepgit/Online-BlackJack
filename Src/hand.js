@@ -28,7 +28,7 @@ export default class Hand {
       }
       return isBlackJack;
     }
-  
+    
     getPlayerCard(deck) {
       let card = deck.givePlayerCard();
       this.entityCards.push(card);
