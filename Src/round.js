@@ -62,6 +62,7 @@ export default class Round {
     let newRoundButton = document.getElementById('newRound'); 
     newRoundButton.disabled = false; 
     console.log(winner, " WON");
+  
   }
 
   dealerTurn() {
