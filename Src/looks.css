@@ -106,12 +106,14 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    animation: moveAndFlip 1s ease-in-out;
 }
 
 .cardDisplay {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     /* Adjust as needed */
 
 }
@@ -132,4 +134,16 @@ body {
     text-align: center;
     color: white;
     font-family: PlayFair;
+}
+
+@keyframes moveAndFlip {
+    from {
+       opacity: 0;
+        /* Move the image 100% to the right with no rotation */
+    }
+
+    to {
+        opacity: 100;
+        /* Move the image back to the original position (left) with a 180-degree Y-axis rotation */
+    }
 }

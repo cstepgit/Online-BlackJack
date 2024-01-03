@@ -81,7 +81,8 @@ export default class Round {
   dealerTurn() {
     let dealerCardsBox = document.getElementById('dealer');
     console.log("DEALER TURN");
-    if (this.dealerCardScore > this.playerCardScore || this.dealerCardScore < this.BLACKJACK) {
+
+    if (this.dealerCardScore > this.playerCardScore || this.dealerCardScore < this.BLACKJACK || this.dealerCardScore == this.BLACKJACK) {
       this.win("Dealer");
     }
     while (this.dealerCardScore < this.playerCardScore) {
