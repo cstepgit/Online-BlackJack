@@ -32,12 +32,14 @@ export default class Hand {
     getPlayerCard(deck) {
       let card = deck.givePlayerCard();
       this.entityCards.push(card);
+      console.log(deck); 
       return card;
     }
   
     getDealerCard(deck) {
       let card = deck.giveDealerCard();
       this.entityCards.push(card);
+      console.log(deck); 
       return card;
     }
   }

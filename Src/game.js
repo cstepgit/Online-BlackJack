@@ -11,9 +11,7 @@ export default class Game {
         this.round = new Round(this.myDeck);
         this.dealerCardsBox = document.getElementById('dealer');
         this.playerCardsBox = document.getElementById('player');
-        this.player = "Player";
-        this.dealer = "Dealer";
-
+    
         //  Gets references to the buttons on screen
         this.startButton = document.getElementById('start');
         this.hitButton = document.getElementById('hit');
@@ -57,6 +55,7 @@ export default class Game {
     //  Sets up the initial dealing
     roundSetUp() {
         this.myDeck.shuffleDeck();
+        console.log(this.myDeck); 
         let card = this.round.getCard();
         this.round.createCardElement(card, this.playerCardsBox);
 
@@ -71,11 +70,11 @@ export default class Game {
 
         this.round.playRound();
         console.log('Round set up');
-        if (this.round.dealerCardScore == this.round.BLACKJACK) {
-            this.round.win(1);
+        if(this.round.playerCardScore == this.round.BLACKJACK){
+            this.playerStand();
         }
-        if (this.round.playerCardScore == this.round.BLACKJACK) {
-            this.round.win(2);
+        else if (this.round.dealerCardScore == this.round.BLACKJACK){
+            this.round.win("Dealer"); 
         }
 
     }
@@ -83,6 +82,9 @@ export default class Game {
     //  Called when player clicks hit
     playerHit() {
         console.log("Player hit");
+        if(this.myDeck.availableCards == 0){
+            this.myDeck.shuffleDiscard();
+        }
         this.round.createCardElement(this.round.getCard(), this.playerCardsBox);
         this.round.getPlayerScore();
         this.round.updateScoreDisplay();
@@ -102,6 +104,7 @@ export default class Game {
     }
 
     newRound() {
+     
         //  Deals and displays two cards for each player and dealer
         this.round.removeAllCards();
         // Enables the hit and stand button once round has started 
@@ -110,8 +113,10 @@ export default class Game {
         this.startButton.disabled = true;
         this.newRoundButton.disabled = true;
         this.round = new Round(this.myDeck);
+      
         this.roundSetUp();
         this.round.updateScoreDisplay();
+       
     }
 
 

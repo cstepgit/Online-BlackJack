@@ -9,7 +9,6 @@ export default class Round {
     this.dealerHand = new Hand();
     this.playerCardScore = 0;
     this.dealerCardScore = 0;
-
     this.startButton = document.getElementById('start');
     this.hitButton = document.getElementById('hit');
     this.standButton = document.getElementById('stand');
@@ -22,6 +21,9 @@ export default class Round {
 
   // gives a player a card and updates their total score
   getCard() {
+    if (this.deck.availableCards == 0) {
+      this.deck.shuffleDiscard();
+    }
     let card = this.playerHand.getPlayerCard(this.deck);
     this.playerCardScore = this.playerHand.calculateScore();
     return card;
@@ -29,6 +31,9 @@ export default class Round {
 
   //  gives a dealer a card and updates thier total score
   getDealerCard() {
+    if (this.deck.availableCards == 0) {
+      this.deck.shuffleDiscard();
+    }
     let card = this.dealerHand.getDealerCard(this.deck);
     this.dealerCardScore = this.dealerHand.calculateScore();
     return card;
@@ -104,6 +109,7 @@ export default class Round {
   removeAllCards() {
     this.removeCardsFromContainer(document.getElementById('player'));
     this.removeCardsFromContainer(document.getElementById('dealer'));
+    this.deck.discard(); 
   }
   removeCardsFromContainer(container) {
     while (container.firstChild) {

@@ -7,6 +7,9 @@ export default class Deck {
     const faceCards = ['jack', 'queen', 'king'];
     this.availableCards = 52;
     this.totalCards = 52;
+    this.usedCards = 0; 
+    this.discardedCards = 0;
+    this.cardsOnTable = 0; 
 
     faceCards.splice(0, 0, 'jack', 'king', 'queen');
 
@@ -57,6 +60,8 @@ export default class Deck {
         //displays card being given to entity
         cardGiven = true;
         this.availableCards--;
+        this.usedCards++; 
+        this.cardsOnTable++;
       } else index++;
     }
     return dealerCard;
@@ -80,10 +85,13 @@ export default class Deck {
         // Displays the card being given to the entity
         cardGiven = true;
         this.availableCards--;
+        this.usedCards++;
+        this.cardsOnTable++; 
       } else {
         index++;
       }
     }
+   
     return playerCard;
   }
 
@@ -97,6 +105,43 @@ export default class Deck {
       [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
     }
   }
+  discard(){
+    console.log("Discarding Cards"); 
+    for(let i = 0; i < this.cards.length; i++){
+      if(this.cards[i].dealerHand || this.cards[i].playerHand){
+        this.cards[i].discard = true; 
+        this.cards[i].dealerHand = false; 
+        this.cards[i].playerHand = false; 
+        this.discardedCards++; 
+        this.cardsOnTable--; 
+      }
+    }
+  }
+  shuffleDiscard() {
+    console.log("Shuffle Cards"); 
+    // Filter cards with discard attribute set to true
+    const discardableCards = this.cards.filter(card => card.discard === true);
+   
+    // Shuffle only the discardable cards
+    for (let i = discardableCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [discardableCards[i], discardableCards[j]] = [discardableCards[j], discardableCards[i]];
+    }
+    console.log(discardableCards);
+    // Update the original array with shuffled discardable cards
+    let discardableIndex = 0;
+    for (let i = 0; i < this.cards.length; i++) {
+      if (this.cards[i].discard === true) {
+        this.cards[i] = discardableCards[discardableIndex];
+        discardableIndex++;
+        this.cards[i].discard = false; 
+      }
+    }
+    this.usedCards = 0;
+    this.availableCards = this.totalCards - (this.usedCards - this.discardedCards); 
+    this.discardedCards = 0;
+  }
+  
 }
 
 
