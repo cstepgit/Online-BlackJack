@@ -9,6 +9,8 @@
   <title>Blackjack Game</title>
 </head>
 <body>   
+
+ 
         <div class="pannel" id="buttons">
             <button class="button active-button" id="start">Start Round</button>
             <button class="button" id="hit">Hit</button>
@@ -17,18 +19,22 @@
         </div>
        
         <h1 class="title"> Dealer </h1>
+        <h1 class="scoreLable"> Card Total: </h1>
         <h1 class="cardTotal" id="dealerCardTotal">0</h1>
 
-        <div id="dealerCardsDisplay"> 
+        <div id="dealerCardsDisplay" class="screenGrouping"> 
           <div class="cardDisplay" id="dealer"></div>
         </div>
 
         <h1 class="title"> Player </h1>
+        <h1 class="scoreLable"> Card Total: </h1>
         <h1 class="cardTotal" id="playerCardTotal">0</h1>
 
-        <div id="playerCardsDisplay"> 
+        <div id="playerCardsDisplay" class="screenGrouping"> 
           <div class="cardDisplay" id="player"></div>
         </div>
+
+       
 
 </body>
 </html>

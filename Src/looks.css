@@ -1,59 +1,63 @@
 @font-face {
     font-family: PlayFair;
-    src: url(Fonts/PlayfairDisplay-VariableFont_wght.ttf);
+    src: url(../Fonts/PlayfairDisplay-VariableFont_wght.ttf);
 }
 
 body {
-    background: #3a4452;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .7)), url("../Images/export-.png");
+    background-color: #cccccc;
+    background-size: cover; /* or 'contain' based on your preference */
+    background-repeat: no-repeat;
 }
 
 .title {
+    margin-left: 25vw;
     text-align: center;
     color: white;
     user-select: none;
     text-shadow: 5px -8px 15px rgba(225, 255, 255, 0.1);
-    ;
+    display: inline-block;
+    font-size: 5vh;
+    
+}
+.cardTotal {
+    text-align: center;
+    color: white;
+    font-family: PlayFair;
+    display:inline-block;
+    font-size: 5vh;
+    margin-left: 0vw;
+
 }
 
-.button:enabled {
-    height: 100px;
-    width: 200px;
+.button:enabled,
+.button:disabled {
+    height: 9vh;
+    width: 10vw;
     border: none;
     margin: 10px;
     padding: 16px 32px;
     border-radius: 16px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vh;
     transition-duration: 0.4s;
     background-color: transparent;
-    font-size: 30px;
     box-shadow: 5px -8px 15px rgba(225, 255, 255, 0.1);
+    font-family: PlayFair;
     outline: solid white 1px;
     color: white;
-    font-family: PlayFair;
+    
 }
 
 .button:disabled {
-    height: 100px;
-    width: 200px;
-    border: none;
-    margin: 10px;
-    padding: 16px 32px;
-    border-radius: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    transition-duration: 0.4s;
-    background-color: transparent;
-    font-size: 30px;
-    box-shadow: 5px -8px 15px rgba(225, 255, 255, 0.1);
     outline: solid rgba(255, 255, 255, 0.313) 1px;
     color: rgba(255, 255, 255, 0.313);
-    font-family: PlayFair;
 }
+
 
 #buttons {
     display: flex;
@@ -63,8 +67,9 @@ body {
     left: 50%;
     transform: translateX(-50%);
     position: fixed;
-    width: auto;
+    width: 100%;
     background: transparent;
+    margin-bottom: 3vh;
 }
 
 /* When a button is enabled and hovered */
@@ -73,33 +78,10 @@ body {
     background-color: white;
     cursor: pointer;
 }
-
-#output {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: transparent;
-    height: 30px;
-    color: white;
-
-}
-
-
-#dealerCardsDisplay {
-    width: auto;
-    height: 200px;
-    margin: 5px;
-    ;
-    overflow: hidden;
-    margin: 5px;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
 .card {
 
-    max-width: 200px;
-    max-height: 200px;
+    max-width:auto;
+    max-height: 25vh;
     object-fit: cover;
     margin: 5px;
     box-shadow: 5px -8px 15px rgba(225, 255, 255, 0.1);
@@ -110,31 +92,27 @@ body {
 }
 
 .cardDisplay {
+    margin-left: 15vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: auto;
+    width: auto;
 
     /* Adjust as needed */
 
 }
-
-#playerCardsDisplay {
-    width: auto;
-    height: 200px;
+.screenGrouping{
+    height: 25vh;
     margin: 5px;
     overflow: hidden;
     margin: 5px;
     position: relative;
     display: flex;
     align-items: center;
-
 }
 
-.cardTotal {
-    text-align: center;
-    color: white;
-    font-family: PlayFair;
-}
+
 
 @keyframes moveAndFlip {
     from {
@@ -146,4 +124,29 @@ body {
         opacity: 100;
         /* Move the image back to the original position (left) with a 180-degree Y-axis rotation */
     }
+}
+
+#gameContainer{
+margin-top: 5vh;
+z-index: -1;
+height: 90vh;
+width: 90vw;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+}
+
+.scoreLable{
+    text-align: center;
+    color: white;
+    user-select: none;
+    text-shadow: 10px -8px 15px rgba(225, 255, 255, 0.1);
+    display: inline-block;
+    font-size: 5vh;
+    margin-left: 15vw;
 }
