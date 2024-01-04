@@ -78,6 +78,7 @@ export default class Game {
             this.playerStand();
         }
         else if (this.round.dealerCardScore == this.round.BLACKJACK){
+            this.round.revealDealerCard();
             this.round.win("Dealer"); 
         }
 

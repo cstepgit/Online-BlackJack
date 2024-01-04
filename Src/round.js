@@ -81,18 +81,19 @@ export default class Round {
 
   }
 
-  revealDealerCard(){
+  async revealDealerCard(){
     let dealerCardsBox = document.getElementById('dealer');
     let lastCard = dealerCardsBox.lastChild;
     if(lastCard){
       dealerCardsBox.removeChild(lastCard); 
     }
     let newCard = this.dealerHand.entityCards[1]; 
+    
     this.createCardElement(newCard, dealerCardsBox); 
     this.updateDealerScoreDisplay();
   }
 
-  dealerTurn() {
+  async dealerTurn() {
     let dealerCardsBox = document.getElementById('dealer');
     console.log("DEALER TURN");
     this.revealDealerCard(); 
@@ -101,6 +102,7 @@ export default class Round {
       this.win("Dealer");
     }
     while (this.dealerCardScore < this.playerCardScore) {
+      await pause(500);
       //while it's less than we need a card so give dealer the card
       this.createCardElement(this.getDealerCard(this.deck), dealerCardsBox);
       //calculate the score with that new card
@@ -113,6 +115,7 @@ export default class Round {
       } else if (this.dealerCardScore > this.playerCardScore) {
         this.win("Dealer");
       }
+      await pause(1000);
     }
   }
   //  Adds a card to either player or dealer card space
@@ -137,5 +140,9 @@ export default class Round {
     this.standButton.disabled = true;
   }
 }
+async function pause(milliseconds) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
 
 

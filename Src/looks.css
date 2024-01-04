@@ -106,7 +106,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    animation: moveAndFlip 1s ease-in-out;
+    animation: moveAndFlip .5s ease-in-out;
 }
 
 .cardDisplay {
