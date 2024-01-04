@@ -61,14 +61,18 @@ export default class Game {
 
         card = this.round.getDealerCard();
         this.round.createCardElement(card, this.dealerCardsBox);
-
+        let dealerValue = this.round.getDealerCardScore();
         card = this.round.getCard();
         this.round.createCardElement(card, this.playerCardsBox);
 
         card = this.round.getDealerCard();
-        this.round.createCardElement(card, this.dealerCardsBox);
-
-        this.round.playRound();
+        let img = document.createElement('img');
+        img.src = "../Cards/card back red.png";
+        img.classList.add('card');
+        this.dealerCardsBox.appendChild(img);
+        
+        this.round.updatePlayerScoreDisplay();
+        this.round.updateDealerFirstScoreDisplay(dealerValue); 
         console.log('Round set up');
         if(this.round.playerCardScore == this.round.BLACKJACK){
             this.playerStand();
@@ -87,9 +91,10 @@ export default class Game {
         }
         this.round.createCardElement(this.round.getCard(), this.playerCardsBox);
         this.round.getPlayerScore();
-        this.round.updateScoreDisplay();
+        this.round.updatePlayerScoreDisplay();
         if (this.round.playerCardScore > this.round.BLACKJACK) {
             console.log("Player Bust");
+            this.round.revealDealerCard();
             this.round.win("Dealer");
         }
         else if (this.round.playerCardScore == this.round.BLACKJACK) {
@@ -115,7 +120,7 @@ export default class Game {
         this.round = new Round(this.myDeck);
       
         this.roundSetUp();
-        this.round.updateScoreDisplay();
+        this.round.updatePlayerScoreDisplay();
        
     }
 

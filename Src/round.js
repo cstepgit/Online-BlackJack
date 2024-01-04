@@ -51,24 +51,27 @@ export default class Round {
 
   }
 
-  //sets initial scores from the first two cards delt
-  playRound() {
-    this.updateScoreDisplay();
-  }
-
   //  displays the full scores
   displayScores() {
     console.log("Player score: " + this.playerCardScore);
     console.log("Dealer score: " + this.dealerCardScore);
   }
 
-  updateScoreDisplay() {
-    let dealerScoreText = document.getElementById('dealerCardTotal');
+  updatePlayerScoreDisplay() {
+
     let playerScoreText = document.getElementById('playerCardTotal');
     this.displayScores();
-    dealerScoreText.innerHTML = this.dealerCardScore;
     playerScoreText.innerHTML = this.playerCardScore;
   }
+  updateDealerScoreDisplay(){
+    let dealerScoreText = document.getElementById('dealerCardTotal');
+    dealerScoreText.innerHTML = this.dealerCardScore;
+  }
+  updateDealerFirstScoreDisplay(value){
+    let dealerScoreText = document.getElementById('dealerCardTotal');
+    dealerScoreText.innerHTML = value;
+  }
+  
   win(winner) {
     this.disableHitStandButtons();
     let newRoundButton = document.getElementById('newRound');
@@ -78,9 +81,21 @@ export default class Round {
 
   }
 
+  revealDealerCard(){
+    let dealerCardsBox = document.getElementById('dealer');
+    let lastCard = dealerCardsBox.lastChild;
+    if(lastCard){
+      dealerCardsBox.removeChild(lastCard); 
+    }
+    let newCard = this.dealerHand.entityCards[1]; 
+    this.createCardElement(newCard, dealerCardsBox); 
+    this.updateDealerScoreDisplay();
+  }
+
   dealerTurn() {
     let dealerCardsBox = document.getElementById('dealer');
     console.log("DEALER TURN");
+    this.revealDealerCard(); 
 
     if (this.dealerCardScore > this.playerCardScore || this.dealerCardScore < this.BLACKJACK || this.dealerCardScore == this.BLACKJACK) {
       this.win("Dealer");
@@ -90,7 +105,7 @@ export default class Round {
       this.createCardElement(this.getDealerCard(this.deck), dealerCardsBox);
       //calculate the score with that new card
       this.dealerCardScore = this.dealerHand.calculateScore();
-      this.updateScoreDisplay();
+      this.updateDealerScoreDisplay();
       //if the dealer busted then their turn is over
       if (this.dealerCardScore > this.BLACKJACK) {
         this.win("Player");
