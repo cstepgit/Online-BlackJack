@@ -102,7 +102,7 @@ export default class Round {
       this.win("Dealer");
     }
     while (this.dealerCardScore < this.playerCardScore) {
-      await pause(500);
+      await pause(1000);
       //while it's less than we need a card so give dealer the card
       this.createCardElement(this.getDealerCard(this.deck), dealerCardsBox);
       //calculate the score with that new card
@@ -115,7 +115,7 @@ export default class Round {
       } else if (this.dealerCardScore > this.playerCardScore) {
         this.win("Dealer");
       }
-      await pause(1000);
+
     }
   }
   //  Adds a card to either player or dealer card space
