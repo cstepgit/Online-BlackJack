@@ -74,12 +74,19 @@ export default class Round {
   
   win(winner) {
     this.disableHitStandButtons();
+    let winScreen = document.getElementById('winScreen');
     let newRoundButton = document.getElementById('newRound');
-    newRoundButton.disabled = false;
-    console.log(winner, " WON");
+    let winDisplay = document.getElementById('winInfo');
+
+    winDisplay.textContent = winner + " Wins!"; // Update the text content with the winner's name
+
+    winScreen.style.display = "block";
     newRoundButton.disabled = false;
 
-  }
+    console.log(winner, " WON");
+    newRoundButton.disabled = false;
+}
+
 
   async revealDealerCard(){
     let dealerCardsBox = document.getElementById('dealer');

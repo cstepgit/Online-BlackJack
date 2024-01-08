@@ -29,6 +29,9 @@ export default class Game {
         this.startButton.addEventListener('click', () => {
             //  Deals and displays two cards for each player and dealer
             this.roundSetUp();
+
+            let modal = document.getElementById("introScreen");
+            modal.style.display = "none";
             // Enables the hit and stand button once round has started 
             this.hitButton.disabled = false;
             this.standButton.disabled = false;
@@ -48,7 +51,9 @@ export default class Game {
         });
 
         this.newRoundButton.addEventListener('click', () => {
-            this.standButton.classList.add('active-button');
+            this.newRoundButton.classList.add('active-button');
+            let winScreen = document.getElementById('winScreen');
+            winScreen.style.display = "none"; 
             this.newRound();
         });
     }
@@ -110,7 +115,7 @@ export default class Game {
     }
 
     newRound() {
-     
+    
         //  Deals and displays two cards for each player and dealer
         this.round.removeAllCards();
         // Enables the hit and stand button once round has started 

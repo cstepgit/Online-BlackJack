@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,33 +9,47 @@
   <link rel="icon" href="../Favicon/favicon.png" type="image/x-icon">
   <title>Blackjack Game</title>
 </head>
-<body>   
 
- 
-        <div class="pannel" id="buttons">
-            <button class="button active-button" id="start">Start Round</button>
-            <button class="button" id="hit">Hit</button>
-            <button class="button" id="stand">Stand</button>
-            <button class="button" id="newRound">New Round</button>
-        </div>
-       
-        <h1 class="title"> Dealer </h1>
-        <h1 class="scoreLable"> Card Total: </h1>
-        <h1 class="cardTotal" id="dealerCardTotal">0</h1>
+<body>
+  <div id="introScreen" class="modal">
+    <div class="modal-content">
+      <p class="info"> BLACKJACK </p>
+      <button class="modal-button" id="start">Start Round</button>
+    </div>
+  </div>
 
-        <div id="dealerCardsDisplay" class="screenGrouping"> 
-          <div class="cardDisplay" id="dealer"></div>
-        </div>
+  <div id="winScreen" class="modal">
+    <div class="modal-content">
+      <p id="winInfo" class="info"></p>
+      <button class="modal-button" id="newRound">New Round</button>
+    </div>
+  </div>
 
-        <h1 class="title"> Player </h1>
-        <h1 class="scoreLable"> Card Total: </h1>
-        <h1 class="cardTotal" id="playerCardTotal">0</h1>
 
-        <div id="playerCardsDisplay" class="screenGrouping"> 
-          <div class="cardDisplay" id="player"></div>
-        </div>
+  <div class="pannel" id="buttons">
+    <button class="button" id="hit">Hit</button>
+    <button class="button" id="stand">Stand</button>
+  </div>
 
-       
+  <h1 class="scoreLable"> Card Total: </h1>
+  <h1 class="cardTotal" id="dealerCardTotal">0</h1>
+
+  <div id="dealerCardsDisplay" class="screenGrouping">
+
+    <h1 class="title"> Dealer </h1>
+    <div class="cardDisplay" id="dealer"></div>
+  </div>
+
+  <h1 class="scoreLable"> Card Total: </h1>
+  <h1 class="cardTotal" id="playerCardTotal">0</h1>
+
+  <div id="playerCardsDisplay" class="screenGrouping">
+    <h1 class="title"> Player </h1>
+    <div class="cardDisplay" id="player"></div>
+  </div>
+
+
 
 </body>
+
 </html>
