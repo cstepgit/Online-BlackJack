@@ -63,67 +63,105 @@ export default class Round {
     this.displayScores();
     playerScoreText.innerHTML = this.playerCardScore;
   }
-  updateDealerScoreDisplay(){
+  updateDealerScoreDisplay() {
     let dealerScoreText = document.getElementById('dealerCardTotal');
     dealerScoreText.innerHTML = this.dealerCardScore;
   }
-  updateDealerFirstScoreDisplay(value){
+  updateDealerFirstScoreDisplay(value) {
     let dealerScoreText = document.getElementById('dealerCardTotal');
     dealerScoreText.innerHTML = value;
   }
-  
-  win(winner) {
+
+  async win(winner) {
+    await pause(1000);
     this.disableHitStandButtons();
     let winScreen = document.getElementById('winScreen');
     let newRoundButton = document.getElementById('newRound');
     let winDisplay = document.getElementById('winInfo');
-
-    winDisplay.textContent = winner + " Wins!"; // Update the text content with the winner's name
-
-    winScreen.style.display = "block";
     newRoundButton.disabled = false;
 
+    winDisplay.innerText = winner + " won"
+
+    winScreen.style.display = "Block";
     console.log(winner, " WON");
+
+  }
+
+  async push() {
+    await pause(1000);
+    this.disableHitStandButtons();
+    let winScreen = document.getElementById('winScreen');
+    let newRoundButton = document.getElementById('newRound');
+    let winDisplay = document.getElementById('winInfo');
     newRoundButton.disabled = false;
-}
+
+    winDisplay.innerText = "It's a push"
+
+    winScreen.style.display = "Block";
+    console.log("It's a push!")
+  }
 
 
-  async revealDealerCard(){
+  async revealDealerCard() {
     let dealerCardsBox = document.getElementById('dealer');
     let lastCard = dealerCardsBox.lastChild;
-    if(lastCard){
-      dealerCardsBox.removeChild(lastCard); 
+    if (lastCard) {
+      dealerCardsBox.removeChild(lastCard);
     }
-    let newCard = this.dealerHand.entityCards[1]; 
-    
-    this.createCardElement(newCard, dealerCardsBox); 
+    let newCard = this.dealerHand.entityCards[1];
+
+    this.createCardElement(newCard, dealerCardsBox);
     this.updateDealerScoreDisplay();
   }
 
   async dealerTurn() {
     let dealerCardsBox = document.getElementById('dealer');
     console.log("DEALER TURN");
-    this.revealDealerCard(); 
+    this.revealDealerCard();
 
-    if (this.dealerCardScore > this.playerCardScore || this.dealerCardScore < this.BLACKJACK || this.dealerCardScore == this.BLACKJACK) {
-      return; 
+    // Check if dealer has a blackjack
+    if (this.dealerCardScore == this.BLACKJACK && this.playerCardScore != this.BLACKJACK) {
+      this.win("Dealer");
+      return;
     }
+
+    // Check if player has a blackjack
+    if (this.playerCardScore == this.BLACKJACK) {
+      if (this.dealerCardScore == this.BLACKJACK) {
+        // It's a tie if both dealer and player have blackjack
+        this.push();
+      } else {
+        // Player wins with blackjack
+        this.win("Player");
+      }
+      return;
+    }
+
     while (this.dealerCardScore < this.playerCardScore) {
       await pause(1000);
-      //while it's less than we need a card so give dealer the card
+
+      // Give the dealer a new card
       this.createCardElement(this.getDealerCard(this.deck), dealerCardsBox);
-      //calculate the score with that new card
+
+      // Update the dealer's score with the new card
       this.dealerCardScore = this.dealerHand.calculateScore();
       this.updateDealerScoreDisplay();
-      //if the dealer busted then their turn is over
-      if (this.dealerCardScore > this.BLACKJACK) {
-        return; 
-      } else if (this.dealerCardScore > this.playerCardScore) {
-        return;
-      }
 
+      // Check for bust
+      if (this.dealerCardScore > this.BLACKJACK) {
+        this.win("Player");
+      } else if (this.dealerCardScore >= this.playerCardScore) {
+        // If dealer has a score greater than or equal to player, dealer wins
+        this.win("Dealer");
+      }
+    }
+
+    // Check for a tie if both dealer and player have the same score
+    if (this.dealerCardScore === this.playerCardScore) {
+      this.push();
     }
   }
+
   //  Adds a card to either player or dealer card space
   createCardElement(card, container) {
     let img = document.createElement('img');
@@ -134,7 +172,7 @@ export default class Round {
   removeAllCards() {
     this.removeCardsFromContainer(document.getElementById('player'));
     this.removeCardsFromContainer(document.getElementById('dealer'));
-    this.deck.discard(); 
+    this.deck.discard();
   }
   removeCardsFromContainer(container) {
     while (container.firstChild) {

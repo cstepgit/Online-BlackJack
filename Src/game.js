@@ -89,7 +89,7 @@ export default class Game {
         }
         else if (this.round.dealerCardScore == this.round.BLACKJACK){
             this.round.revealDealerCard();
-            return; 
+            this.round.win("Dealer"); 
         }
     }
 
@@ -104,15 +104,19 @@ export default class Game {
         this.round.updatePlayerScoreDisplay();
         if (this.round.playerCardScore > this.round.BLACKJACK) {
             console.log("Player Bust");
+            this.round.win("Dealer"); 
             this.round.revealDealerCard();
-            return;
+            // Player busted so the dealer wins
+        
         }
+        // player got blackjack so now send to dealer for tie attempt
         else if (this.round.playerCardScore == this.round.BLACKJACK) {
             this.round.dealerTurn();
         }
     }
     //  Called when player clicks stand 
     playerStand() {
+        // player stood so send to dealer turn 
         console.log("Player stand");
         this.round.disableHitStandButtons();
         this.round.dealerTurn();
