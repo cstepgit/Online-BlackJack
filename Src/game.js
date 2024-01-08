@@ -28,7 +28,7 @@ export default class Game {
         //  Event Listener for start button
         this.startButton.addEventListener('click', () => {
             //  Deals and displays two cards for each player and dealer
-            this.roundSetUp();
+            this.roundHelper();
 
             let modal = document.getElementById("introScreen");
             modal.style.display = "none";
@@ -57,6 +57,11 @@ export default class Game {
             this.newRound();
         });
     }
+
+
+    roundHelper(){
+        this.roundSetUp();
+    }
     //  Sets up the initial dealing
     roundSetUp() {
         this.myDeck.shuffleDeck();
@@ -84,9 +89,8 @@ export default class Game {
         }
         else if (this.round.dealerCardScore == this.round.BLACKJACK){
             this.round.revealDealerCard();
-            this.round.win("Dealer"); 
+            return; 
         }
-
     }
 
     //  Called when player clicks hit
@@ -101,7 +105,7 @@ export default class Game {
         if (this.round.playerCardScore > this.round.BLACKJACK) {
             console.log("Player Bust");
             this.round.revealDealerCard();
-            this.round.win("Dealer");
+            return;
         }
         else if (this.round.playerCardScore == this.round.BLACKJACK) {
             this.round.dealerTurn();

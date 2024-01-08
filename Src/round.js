@@ -106,7 +106,7 @@ export default class Round {
     this.revealDealerCard(); 
 
     if (this.dealerCardScore > this.playerCardScore || this.dealerCardScore < this.BLACKJACK || this.dealerCardScore == this.BLACKJACK) {
-      this.win("Dealer");
+      return; 
     }
     while (this.dealerCardScore < this.playerCardScore) {
       await pause(1000);
@@ -117,10 +117,9 @@ export default class Round {
       this.updateDealerScoreDisplay();
       //if the dealer busted then their turn is over
       if (this.dealerCardScore > this.BLACKJACK) {
-        this.win("Player");
-        break;
+        return; 
       } else if (this.dealerCardScore > this.playerCardScore) {
-        this.win("Dealer");
+        return;
       }
 
     }

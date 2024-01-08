@@ -21,6 +21,7 @@ body {
     /* Set the height of the body to 100% of the viewport height */
     margin: 0;
     /* Remove default margin to ensure full coverage */
+    user-select: none;
 }
 
 .title {
@@ -232,6 +233,7 @@ body {
 .modal-button:hover{
     background-color: white;
     color: black;
+    cursor: pointer;
 }
 
 .info{
