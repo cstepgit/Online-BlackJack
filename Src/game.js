@@ -18,6 +18,7 @@ export default class Game {
         this.hitButton = document.getElementById('hit');
         this.standButton = document.getElementById('stand');
         this.newRoundButton = document.getElementById('newRound');
+        this.betButton = document.getElementById('bet_submit');
 
         // Disables buttons that can't be clicked until start of round
         this.hitButton.disabled = true;
@@ -29,9 +30,15 @@ export default class Game {
         //  Event Listener for start button
         this.startButton.addEventListener('click', () => {
             //  Deals and displays two cards for each player and dealer
-            this.roundHelper();
-
             let modal = document.getElementById("introScreen");
+            modal.style.display = "none";
+            // Enables the hit and stand button once round has started 
+        });
+
+        this.betButton.addEventListener('click', () => {
+            //  Deals and displays two cards for each player and dealer
+            this.newRound();
+            let modal = document.getElementById("betting_wraper");
             modal.style.display = "none";
             // Enables the hit and stand button once round has started 
             this.hitButton.disabled = false;
@@ -40,6 +47,7 @@ export default class Game {
 
         });
 
+        
         // Event listeners for the hit and stand buttons
         this.hitButton.addEventListener('click', () => {
             this.hitButton.classList.add('active-button');
@@ -55,14 +63,11 @@ export default class Game {
             this.newRoundButton.classList.add('active-button');
             let winScreen = document.getElementById('winScreen');
             winScreen.style.display = "none"; 
-            this.newRound();
+            let modal = document.getElementById("betting_wraper");
+            modal.style.display = "block";
         });
     }
 
-
-    roundHelper(){
-        this.roundSetUp();
-    }
     //  Sets up the initial dealing
     roundSetUp() {
         this.myDeck.shuffleDeck();
@@ -125,7 +130,6 @@ export default class Game {
     }
 
     newRound() {
-    
         //  Deals and displays two cards for each player and dealer
         this.round.removeAllCards();
         // Enables the hit and stand button once round has started 
@@ -134,7 +138,6 @@ export default class Game {
         this.startButton.disabled = true;
         this.newRoundButton.disabled = true;
         this.round = new Round(this.myDeck);
-      
         this.roundSetUp();
         this.round.updatePlayerScoreDisplay();
        
