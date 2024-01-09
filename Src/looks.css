@@ -174,7 +174,7 @@ body {
     z-index: 1;
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(
+    background: linear-gradient(
         45deg,
         hsl(240deg 100% 20%) 0%,
         hsl(289deg 100% 21%) 11%,
@@ -186,10 +186,9 @@ body {
         hsl(34deg 100% 53%) 78%,
         hsl(45deg 100% 50%) 89%,
         hsl(55deg 100% 50%) 100%
-      );
+    );
 }
 
-/* Modal Content */
 .modal-content {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
@@ -202,10 +201,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
-    align-items: center;
     justify-content: center;
-    display: flex;
+    text-align: center;
 }
 
 .modal-button {
@@ -222,29 +219,55 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3vh;
+    font-size: 4ch;
     transition-duration: 0.4s;
-    background-color: transparent;
+    background: transparent;
     box-shadow: 5px -8px 15px rgba(225, 255, 255, 0.1);
     font-family: PlayFair;
     outline: solid white 1px;
     color: white;
 }
-.modal-button:hover{
-    background-color: white;
+
+.modal-button:hover {
+    background: white;
     color: black;
     cursor: pointer;
 }
 
 .info{
+    margin: 0;
     color: white;
     font-family: PlayFair;
-    font-size:15ch;
-    text-align: center;
+    display: block;
+ 
+    font-size: 15ch;
+   
+}
+.stats{
+    margin: 0;
+    color: white;
+    font-family: PlayFair;
+    display: block;
+   
+    font-size: 6ch;
 }
 
-#winScreen{
+#winScreen {
     display: none;
-    background-image: none;
-    background-color: rgba(0,0,0,0.4)
+    background: rgba(0, 0, 0, 0.4);
 }
+
+#introTitle {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensure the container has a defined height */
+}
+
+#winInfo{
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+

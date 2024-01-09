@@ -72,34 +72,28 @@ export default class Round {
     dealerScoreText.innerHTML = value;
   }
 
-  async win(winner) {
-    await pause(1000);
+  async win(winner = null) {
     this.disableHitStandButtons();
+    await pause(500);
     let winScreen = document.getElementById('winScreen');
     let newRoundButton = document.getElementById('newRound');
     let winDisplay = document.getElementById('winInfo');
+    let playerScore = document.getElementById('playerScore');
+    let dealerScore = document.getElementById("dealerScore");
     newRoundButton.disabled = false;
 
-    winDisplay.innerText = winner + " won"
+    if (winner === null) {
+      winDisplay.innerText = "It's a push";
+    } else {
+      winDisplay.innerText = winner + " won";
+      playerScore.innerText = "Player Score: " + this.playerCardScore;
+      dealerScore.innerText = "Dealer Score: " + this.dealerCardScore;
+      console.log(winner, " WON");
+    }
 
     winScreen.style.display = "Block";
-    console.log(winner, " WON");
-
   }
 
-  async push() {
-    await pause(1000);
-    this.disableHitStandButtons();
-    let winScreen = document.getElementById('winScreen');
-    let newRoundButton = document.getElementById('newRound');
-    let winDisplay = document.getElementById('winInfo');
-    newRoundButton.disabled = false;
-
-    winDisplay.innerText = "It's a push"
-
-    winScreen.style.display = "Block";
-    console.log("It's a push!")
-  }
 
 
   async revealDealerCard() {
@@ -129,7 +123,7 @@ export default class Round {
     if (this.playerCardScore == this.BLACKJACK) {
       if (this.dealerCardScore == this.BLACKJACK) {
         // It's a tie if both dealer and player have blackjack
-        this.push();
+        this.win();
       } else {
         // Player wins with blackjack
         this.win("Player");
@@ -158,7 +152,7 @@ export default class Round {
 
     // Check for a tie if both dealer and player have the same score
     if (this.dealerCardScore === this.playerCardScore) {
-      this.push();
+      this.win();
     }
   }
 
