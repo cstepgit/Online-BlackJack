@@ -1,7 +1,7 @@
 import Deck from '../Src/deck.js';
+import Bank from './bank.js';
 import Round from './round.js';
 
-// 1 is dealer win 2 is player win
 export default class Game {
     constructor() {
         //  Constructs new deck, shuffles it, and gets element ids for where 
@@ -9,6 +9,7 @@ export default class Game {
         this.myDeck = new Deck();
         this.myDeck.shuffleDeck();
         this.round = new Round(this.myDeck);
+        this.bank = new Bank(500);
         this.dealerCardsBox = document.getElementById('dealer');
         this.playerCardsBox = document.getElementById('player');
     
@@ -95,6 +96,7 @@ export default class Game {
 
     //  Called when player clicks hit
     playerHit() {
+        
         console.log("Player hit");
         if(this.myDeck.availableCards == 0){
             this.myDeck.shuffleDiscard();
