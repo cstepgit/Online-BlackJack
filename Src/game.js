@@ -8,8 +8,9 @@ export default class Game {
         //  Player and dealer cards will be displayed
         this.myDeck = new Deck();
         this.myDeck.shuffleDeck();
-        this.round = new Round(this.myDeck);
         this.bank = new Bank(500);
+        this.round = new Round(this.myDeck,this.bank);
+      
         this.dealerCardsBox = document.getElementById('dealer');
         this.playerCardsBox = document.getElementById('player');
     
@@ -26,7 +27,8 @@ export default class Game {
         this.newRoundButton.disabled = true;
         this.startButton.disabled = false;
 
-
+        this.bank.displayBank();
+        this.bank.displayBet();
         //  Event Listener for start button
         this.startButton.addEventListener('click', () => {
             //  Deals and displays two cards for each player and dealer
@@ -112,13 +114,14 @@ export default class Game {
         if (this.round.playerCardScore > this.round.BLACKJACK) {
             console.log("Player Bust");
             this.round.win("Dealer"); 
+            this.bank.payout("Dealer"); 
             this.round.revealDealerCard();
             // Player busted so the dealer wins
         
         }
         // player got blackjack so now send to dealer for tie attempt
         else if (this.round.playerCardScore == this.round.BLACKJACK) {
-            this.round.dealerTurn();
+            this.dealerTurn();
         }
     }
     //  Called when player clicks stand 
@@ -126,7 +129,67 @@ export default class Game {
         // player stood so send to dealer turn 
         console.log("Player stand");
         this.round.disableHitStandButtons();
-        this.round.dealerTurn();
+        this.dealerTurn();        
+    }
+
+    async dealerTurn(){
+        let dealerCardsBox = document.getElementById('dealer');
+        console.log("NEW DEALER TURN");
+        this.round.revealDealerCard();
+
+        // Check for dealer blackjack
+        if(this.round.dealerCardScore == this.round.BLACKJACK && this.round.playerCardScore != this.round.BLACKJACK){
+            this.round.win("Dealer"); 
+            this.bank.payout("Dealer"); 
+            return;
+        }
+
+        // Check if dealer just beat players score
+        if(this.round.dealerCardScore > this.round.playerCardScore){
+            this.round.win("Dealer");
+            this.bank.payout("Dealer"); 
+            return; 
+        }
+        // Check if player has a blackjack
+    if (this.round.playerCardScore == this.round.BLACKJACK) {
+        if (this.round.dealerCardScore == this.round.BLACKJACK) {
+          // It's a tie if both dealer and player have blackjack
+          this.round.win();
+          this.bank.payout("Push"); 
+        } else {
+          // Player wins with blackjack
+          this.round.win("Player");
+          this.bank.payout("Player"); 
+        }
+        return;
+      }
+  
+      while (this.round.dealerCardScore < this.round.playerCardScore) {
+        await pause(1000);
+  
+        // Give the dealer a new card
+        this.round.createCardElement(this.round.getDealerCard(this.deck), dealerCardsBox);
+  
+        // Update the dealer's score with the new card
+        this.round.dealerCardScore = this.round.dealerHand.calculateScore();
+        this.round.updateDealerScoreDisplay();
+  
+        // Check for bust
+        if (this.round.dealerCardScore > this.round.BLACKJACK) {
+          this.round.win("Player");
+          this.bank.payout("Player"); 
+        } else if (this.round.dealerCardScore >= this.round.playerCardScore) {
+          // If dealer has a score greater than or equal to player, dealer wins
+          this.round.win("Dealer");
+          this.bank.payout("Dealer"); 
+        }
+      }
+  
+      // Check for a tie if both dealer and player have the same score
+      if (this.round.dealerCardScore === this.round.playerCardScore) {
+        this.round.win();
+      }
+
     }
 
     newRound() {
@@ -145,3 +208,6 @@ export default class Game {
 
 
 }
+async function pause(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+  }

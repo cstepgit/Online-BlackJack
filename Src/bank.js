@@ -13,6 +13,10 @@ export default class Bank {
         this.bet_500 = document.getElementById('bet_500');
         this.bet_submit = document.getElementById('bet_submit');
         this.bet_clear = document.getElementById('bet_clear');
+        this.all_in = document.getElementById('all_in');
+        this.possible_payout = document.getElementById('possiblePayout');
+
+        this.PAYOUT_RATIO = 3/2
 
         this.bet_5.addEventListener('click', () => {
             this.bet_5.classList.add('active-button');
@@ -57,15 +61,30 @@ export default class Bank {
 
         this.bet_clear.addEventListener('click', () => {
             this.bet_clear.classList.add('active-button');
+            console.log("clear Bet");
+            this.betClear();
           
         });
+        this.all_in.addEventListener('click', () => {
+            this.all_in.classList.add('active-button');
+            console.log("all in");
+           this.allIn();
+          
+        });
+
+        this.possiblePayout();
+        this.displayBank();
     }
     displayBank(){
         this.bankDisplay.innerHTML = "Bank Total: " + this.bankTotal; 
     }
     betClear() {
+        console.log("clear Bet");
         this.bankTotal += this.totalBet; 
         this.totalBet = 0;
+        this.displayBank();
+        this.displayBet();
+        this.possiblePayout();
     }
     displayBet() {
         this.betdisplay.innerHTML = this.totalBet;
@@ -76,17 +95,34 @@ export default class Bank {
             this.bankTotal -= bet;
             this.displayBet();
             this.displayBank(); 
+            this.possiblePayout(bet);
         }
         else{
             console.log("not enough money"); 
         }
     }
-    payout(playerWin) {
-        if (!playerWin) {
-            this.bankTotal -= this.totalBet;
-        } else if (playerWin) {
-            this.bankTotal += this.totalBet * 2 / 3;
+    payout(winner) {
+       if (winner == "Player") {
+            this.bankTotal += this.totalBet * this.PAYOUT_RATIO;
         }
+        else if(winner == "Push"){
+            this.bankTotal += this.totalBet;
+        }
+        this.totalBet = 0;
+        this.displayBet();
+        this.displayBank();
+        this.possiblePayout();
+    }
+    possiblePayout(){
+        console.log(this.totalBet*3/2); 
+        this.possible_payout.innerHTML = "Possible payout: " + this.totalBet * this.PAYOUT_RATIO
+    }
+    allIn(){
+        this.totalBet+= this.bankTotal; 
+        this.bankTotal = 0;
+        this.displayBank();
+        this.displayBet();
+        this.possiblePayout();
     }
 
 }

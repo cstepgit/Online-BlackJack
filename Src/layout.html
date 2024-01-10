@@ -11,28 +11,32 @@
 </head>
 
 <body>
-  <div id="introScreen" class="modal">
-    <div class="modal-content">
-      <p class="info" id="introTitle"> BLACKJACK </p>
-      <button class="modal-button" id="start">Start Round</button>
+
+  <div class="win_wraper">
+    <div id="introScreen" class="modal">
+      <div class="modal-content">
+        <p class="info" id="introTitle"> BLACKJACK </p>
+        <button class="modal-button" id="start">Start Round</button>
+      </div>
+    </div>
+
+    <div id="winScreen" class="modal">
+      <div class="modal-content">
+        <p id="winInfo" class="info"></p>
+        <p class="stats" id="playerScore"></p>
+        <p class="stats" id="dealerScore"></p>
+        <button class="modal-button" id="newRound">New Round</button>
+      </div>
     </div>
   </div>
-
-  <div id="winScreen" class="modal">
-    <div class="modal-content">
-      <p id="winInfo" class="info"></p>
-      <p class="stats" id="playerScore"></p>
-      <p class="stats" id="dealerScore"></p>
-      <button class="modal-button" id="newRound">New Round</button>
-    </div>
-  </div>
-
-
 
 
   <div class="betting_wraper" id="betting_wraper">
-    <div class="bettingPannel">
+    <div class="bankInfo" id="bankInfo">
       <div id="bankTotal"></div>
+      <div id="possiblePayout"></div>
+    </div>
+    <div class="bettingPannel" id="betting_pannel">
       <div class="betting_output" id="betting_output">0</div>
       <div class="betting_keys">
         <button class="betting_chip" id="bet_5">5</button>
@@ -41,33 +45,40 @@
         <button class="betting_chip" id="bet_50">50</button>
         <button class="betting_chip" id="bet_100">100</button>
         <button class="betting_chip" id="bet_500">500</button>
-        <button class="bet_submit" id="bet_submit">Bet</button>
+        <button class="all_in" id="all_in">All in</button>
         <button class="bet_clear" id="bet_clear">Clear</button>
+        <button class="bet_submit" id="bet_submit">Bet</button>
       </div>
     </div>
   </div>
 
 
-  <div class="pannel" id="buttons">
-    <button class="button" id="hit">Hit</button>
-    <button class="button" id="stand">Stand</button>
-  </div>
 
-  <h1 class="scoreLable"> Card Total: </h1>
-  <h1 class="cardTotal" id="dealerCardTotal">0</h1>
+  <div class="main_wraper">
+    <div class="pannel" id="buttons">
+      <button class="button" id="hit">Hit</button>
+      <button class="button" id="stand">Stand</button>
+    </div>
+    <div class="bankInfo" id="bankInfo2">
+      <div id="bankTotal"></div>
+      <div id="possiblePayout"></div>
+    </div>
+    <h1 class="scoreLable"> Card Total: </h1>
+    <h1 class="cardTotal" id="dealerCardTotal">0</h1>
 
-  <div id="dealerCardsDisplay" class="screenGrouping">
+    <div id="dealerCardsDisplay" class="screenGrouping">
 
-    <h1 class="title"> Dealer </h1>
-    <div class="cardDisplay" id="dealer"></div>
-  </div>
+      <h1 class="title"> Dealer </h1>
+      <div class="cardDisplay" id="dealer"></div>
+    </div>
 
-  <h1 class="scoreLable"> Card Total: </h1>
-  <h1 class="cardTotal" id="playerCardTotal">0</h1>
+    <h1 class="scoreLable"> Card Total: </h1>
+    <h1 class="cardTotal" id="playerCardTotal">0</h1>
 
-  <div id="playerCardsDisplay" class="screenGrouping">
-    <h1 class="title"> Player </h1>
-    <div class="cardDisplay" id="player"></div>
+    <div id="playerCardsDisplay" class="screenGrouping">
+      <h1 class="title"> Player </h1>
+      <div class="cardDisplay" id="player"></div>
+    </div>
   </div>
 
 

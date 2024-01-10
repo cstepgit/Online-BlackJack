@@ -1,10 +1,9 @@
 import Hand from './hand.js';
-import Card from './card.js';
-import Deck from './deck.js';
 
 export default class Round {
-  constructor(deck) {
+  constructor(deck, bank) {
     this.deck = deck;
+    this.bank = bank;
     this.playerHand = new Hand();
     this.dealerHand = new Hand();
     this.playerCardScore = 0;
@@ -48,7 +47,6 @@ export default class Round {
   getPlayerScore() {
     console.log(this.playerHand.calculateScore());
     return this.playerHand.calculateScore();
-
   }
 
   //  displays the full scores
@@ -84,13 +82,16 @@ export default class Round {
 
     if (winner === null) {
       winDisplay.innerText = "It's a push";
+      this.winner = "Push"
+      playerScore.innerText = "Player Score: " + this.playerCardScore;
+      dealerScore.innerText = "Dealer Score: " + this.dealerCardScore;
     } else {
       winDisplay.innerText = winner + " won";
       playerScore.innerText = "Player Score: " + this.playerCardScore;
       dealerScore.innerText = "Dealer Score: " + this.dealerCardScore;
       console.log(winner, " WON");
     }
-
+    this.roundWinner = winner;
     winScreen.style.display = "Block";
   }
 
@@ -108,53 +109,6 @@ export default class Round {
     this.updateDealerScoreDisplay();
   }
 
-  async dealerTurn() {
-    let dealerCardsBox = document.getElementById('dealer');
-    console.log("DEALER TURN");
-    this.revealDealerCard();
-
-    // Check if dealer has a blackjack
-    if (this.dealerCardScore == this.BLACKJACK && this.playerCardScore != this.BLACKJACK) {
-      this.win("Dealer");
-      return;
-    }
-
-    // Check if player has a blackjack
-    if (this.playerCardScore == this.BLACKJACK) {
-      if (this.dealerCardScore == this.BLACKJACK) {
-        // It's a tie if both dealer and player have blackjack
-        this.win();
-      } else {
-        // Player wins with blackjack
-        this.win("Player");
-      }
-      return;
-    }
-
-    while (this.dealerCardScore < this.playerCardScore) {
-      await pause(1000);
-
-      // Give the dealer a new card
-      this.createCardElement(this.getDealerCard(this.deck), dealerCardsBox);
-
-      // Update the dealer's score with the new card
-      this.dealerCardScore = this.dealerHand.calculateScore();
-      this.updateDealerScoreDisplay();
-
-      // Check for bust
-      if (this.dealerCardScore > this.BLACKJACK) {
-        this.win("Player");
-      } else if (this.dealerCardScore >= this.playerCardScore) {
-        // If dealer has a score greater than or equal to player, dealer wins
-        this.win("Dealer");
-      }
-    }
-
-    // Check for a tie if both dealer and player have the same score
-    if (this.dealerCardScore === this.playerCardScore) {
-      this.win();
-    }
-  }
 
   //  Adds a card to either player or dealer card space
   createCardElement(card, container) {
