@@ -68,8 +68,11 @@ export default class Game {
             this.newRoundButton.classList.add('active-button');
             let winScreen = document.getElementById('winScreen');
             winScreen.style.display = "none"; 
-            let modal = document.getElementById("betting_wraper");
-            modal.style.display = "block";
+            const modal = document.getElementById("betting_pannel");
+            const overlay = document.querySelector(".overlay"); 
+            modal.classList.remove("hidden");
+            
+            overlay.classList.remove("hidden"); 
         });
     }
 
