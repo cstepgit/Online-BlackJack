@@ -191,10 +191,11 @@ export default class Game {
           this.bank.payout("Dealer"); 
         }
       }
-  
+ 
       // Check for a tie if both dealer and player have the same score
       if (this.round.dealerCardScore === this.round.playerCardScore) {
         this.round.win();
+        this.bank.payout("Push");
       }
 
     }

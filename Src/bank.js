@@ -106,6 +106,7 @@ export default class Bank {
             this.bankTotal += this.totalBet * this.PAYOUT_RATIO;
         }
         else if(winner == "Push"){
+            console.log("made it here");
             this.bankTotal += this.totalBet;
         }
         this.totalBet = 0;
