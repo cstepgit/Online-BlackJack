@@ -40,8 +40,11 @@ export default class Game {
         this.betButton.addEventListener('click', () => {
             //  Deals and displays two cards for each player and dealer
             this.newRound();
-            let modal = document.getElementById("betting_wraper");
-            modal.style.display = "none";
+            const modal = document.getElementById("betting_pannel");
+            const overlay = document.querySelector(".overlay"); 
+            modal.classList.add("hidden");
+            overlay.classList.add("hidden"); 
+
             // Enables the hit and stand button once round has started 
             this.hitButton.disabled = false;
             this.standButton.disabled = false;
@@ -98,6 +101,7 @@ export default class Game {
         else if (this.round.dealerCardScore == this.round.BLACKJACK){
             this.round.revealDealerCard();
             this.round.win("Dealer"); 
+            this.bank.payout("Dealer");
         }
     }
 
