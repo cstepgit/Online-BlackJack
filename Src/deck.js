@@ -18,7 +18,7 @@ export default class Deck {
     // for values 2-9 of each suit
     for (let value = 2; value <= 10; value++) {
       for (const suit of suits) {
-        fileName = '../Cards/' + value + '_of_' + suit + '.png';
+        fileName = `../Cards/${value}_of_${suit}.png`;
         let card = new Card(value, suit, fileName);
 
         this.cards.push(card);
