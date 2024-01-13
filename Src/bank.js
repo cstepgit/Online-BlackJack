@@ -76,7 +76,7 @@ export default class Bank {
         this.displayBank();
     }
     displayBank(){
-        this.bankDisplay.innerHTML = "Bank Total: " + this.bankTotal; 
+        this.bankDisplay.innerHTML = this.bankTotal; 
     }
     betClear() {
         console.log("clear Bet");
@@ -116,7 +116,7 @@ export default class Bank {
     }
     possiblePayout(){
         console.log(this.totalBet*3/2); 
-        this.possible_payout.innerHTML = "Possible payout: " + this.totalBet * this.PAYOUT_RATIO
+        this.possible_payout.innerHTML = this.totalBet * this.PAYOUT_RATIO
     }
     allIn(){
         this.totalBet+= this.bankTotal; 

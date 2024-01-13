@@ -312,32 +312,7 @@ body {
     gap: 3px;
 }
 
-#bankTotal {
-    font-size: 2rem;
-    padding-left: 2vw;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    color: hsl(0, 0%, 100%);
-    align-self: center;
 
-}
-
-#possiblePayout {
-    font-size: 2rem;
-    padding-left: 2vw;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    color: hsl(0, 0%, 100%);
-    width: 100%;
-    align-self: center;
-
-}
 
 .bet_submit {
     font-size: 3rem;
@@ -415,17 +390,39 @@ body {
     cursor: pointer;
 }
 
-.bankInfo {
+
+#bankTotal {
+  
+    font-size: 3rem;
+    margin-bottom: 0;
+  
+}
+#possiblePayout {
+    font-size: 3rem;
+   
+    margin-bottom: 0;
+}
+#bankInfo {
     width: 20vw;
-    height: 15vh;
+    height: 30vh;
     position: fixed;
     top: 50%;
     left: 70%;
     transform: translate(-50%, -50%);
-    grid-template-columns: repeat(1, 1fr);
     z-index: 2;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: hsl(0, 0%, 100%);
+    border-radius: 16px;
+   
 }
-
+.bankLabel{
+   font-family: PlayFair;
+    margin-bottom: 0;
+}
 .overlay {
     position: fixed;
     top: 0;
@@ -437,6 +434,7 @@ body {
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(3px);
     z-index: 1;
+    
 }
 
 

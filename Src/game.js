@@ -71,7 +71,6 @@ export default class Game {
             const modal = document.getElementById("betting_pannel");
             const overlay = document.querySelector(".overlay"); 
             modal.classList.remove("hidden");
-            
             overlay.classList.remove("hidden"); 
         });
     }
