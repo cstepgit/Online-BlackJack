@@ -185,7 +185,7 @@ export default class Game {
         if (this.round.dealerCardScore > this.round.BLACKJACK) {
           this.round.win("Player");
           this.bank.payout("Player"); 
-        } else if (this.round.dealerCardScore >= this.round.playerCardScore) {
+        } else if (this.round.dealerCardScore > this.round.playerCardScore) {
           // If dealer has a score greater than or equal to player, dealer wins
           this.round.win("Dealer");
           this.bank.payout("Dealer"); 
