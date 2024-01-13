@@ -91,7 +91,7 @@ export default class Game {
 
         card = this.round.getDealerCard();
         let img = document.createElement('img');
-        img.src = "Cards/card back red.png";
+        img.src = "/Cards/card back red.png";
         img.classList.add('card');
         this.dealerCardsBox.appendChild(img);
         
