@@ -18,7 +18,7 @@ export default class Deck {
     // for values 2-9 of each suit
     for (let value = 2; value <= 10; value++) {
       for (const suit of suits) {
-        fileName = `../Cards/${value}_of_${suit}.png`;
+        fileName = "./Cards/${value}_of_${suit}.png";
         let card = new Card(value, suit, fileName);
 
         this.cards.push(card);
@@ -28,7 +28,7 @@ export default class Deck {
     // for each suit, add 4 values of 10
     for (let k = 0; k <= 2; k++) {
       for (const suit of suits) {
-        fileName = `./Cards/${faceCards[k]}_of_${suit}.png`;
+        fileName = "./Cards/${faceCards[k]}_of_${suit}.png";
 
         let card = new Card(10, suit, fileName);
         this.cards.push(card);
@@ -37,7 +37,7 @@ export default class Deck {
 
     // for each suit, add a value 11
     for (const suit of suits) {
-      fileName = `../Cards/ace_of_${suit}.png`;
+      fileName = "./Cards/ace_of_${suit}.png";
       let card = new Card(11, suit, fileName);
 
       this.cards.push(card);
