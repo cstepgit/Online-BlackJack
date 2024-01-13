@@ -64,7 +64,7 @@ body {
 
     outline: solid white 2px;
     color: white;
-    
+
     font-family: PlayFair;
 
 }
@@ -86,7 +86,7 @@ body {
     width: 100%;
     background: transparent;
     margin-bottom: 3vh;
-  
+
 
 
 
@@ -392,16 +392,18 @@ body {
 
 
 #bankTotal {
-  
+
     font-size: 3rem;
     margin-bottom: 0;
-  
+
 }
+
 #possiblePayout {
     font-size: 3rem;
-   
+
     margin-bottom: 0;
 }
+
 #bankInfo {
     width: 20vw;
     height: 30vh;
@@ -417,12 +419,14 @@ body {
     -webkit-backdrop-filter: blur(5px);
     color: hsl(0, 0%, 100%);
     border-radius: 16px;
-   
+
 }
-.bankLabel{
-   font-family: PlayFair;
+
+.bankLabel {
+    font-family: PlayFair;
     margin-bottom: 0;
 }
+
 .overlay {
     position: fixed;
     top: 0;
@@ -434,11 +438,454 @@ body {
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(3px);
     z-index: 1;
-    
+
 }
 
 
-.hidden{
+.hidden {
     display: none;
 }
 
+
+@media only screen and (max-width: 600px) {
+
+    /* Styles specific to mobile screens */
+    body {
+        background-image: linear-gradient(45deg,
+                hsl(240deg 100% 20%) 0%,
+                hsl(289deg 100% 21%) 11%,
+                hsl(315deg 100% 27%) 22%,
+                hsl(329deg 100% 36%) 33%,
+                hsl(337deg 100% 43%) 44%,
+                hsl(357deg 91% 59%) 56%,
+                hsl(17deg 100% 59%) 67%,
+                hsl(34deg 100% 53%) 78%,
+                hsl(45deg 100% 50%) 89%,
+                hsl(55deg 100% 50%) 100%);
+        height: 100vh;
+        /* Set the height of the body to 100% of the viewport height */
+        margin: 0;
+        /* Remove default margin to ensure full coverage */
+        user-select: none;
+        font-family: Playfair;
+        color: white;
+
+    }
+
+    .title {
+        margin-left: 5vw;
+        text-align: center;
+        text-shadow: 5px -8px 15px rgba(225, 255, 255, 0.1);
+        display: inline-block;
+        font-size: 5vw;
+
+    }
+
+    .cardTotal {
+        text-align: center;
+
+        display: inline-block;
+        font-size: 5vh;
+        margin-left: 0vw;
+
+    }
+
+    .button:enabled,
+    .button:disabled {
+        height: 9vh;
+        width: 30vw;
+        border: none;
+        margin: 10px;
+        padding: 16px 32px;
+        border-radius: 16px;
+        text-align: center;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 3vh;
+        transition-duration: 0.4s;
+        background-color: transparent;
+        box-shadow: 5px -8px 15px rgba(225, 255, 255, 0.1);
+
+        outline: solid white 2px;
+        color: white;
+
+        font-family: PlayFair;
+
+    }
+
+    .button:disabled {
+        outline: solid rgba(255, 255, 255, 0.313) 1px;
+        color: rgba(255, 255, 255, 0.313);
+    }
+
+
+    #buttons {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 2%;
+        left: 50%;
+        transform: translateX(-50%);
+        position: fixed;
+        width: 100%;
+        background: transparent;
+        margin-bottom: 3vh;
+
+
+
+
+    }
+
+    /* When a button is enabled and hovered */
+    .button:not([disabled]):hover {
+        color: black;
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .card {
+
+        max-width: auto;
+        max-height: 15vh;
+        object-fit: cover;
+        margin: 5px;
+        box-shadow: 5px -8px 15px rgba(225, 255, 255, 0.1);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        animation: moveAndFlip .5s ease-in-out;
+    }
+
+    .cardDisplay {
+        margin-left: 5vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: auto;
+        width: auto;
+
+        /* Adjust as needed */
+
+    }
+
+    .screenGrouping {
+        height: 15vh;
+        margin: 5px;
+        overflow: hidden;
+        margin: 5px;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+
+
+    @keyframes moveAndFlip {
+        from {
+            opacity: 0;
+            /* Move the image 100% to the right with no rotation */
+        }
+
+        to {
+            opacity: 100;
+            /* Move the image back to the original position (left) with a 180-degree Y-axis rotation */
+        }
+    }
+
+    #gameContainer {
+        margin-top: 5vh;
+        z-index: 0;
+        height: 90vh;
+        width: 90vw;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .scoreLable {
+        text-align: center;
+
+        user-select: none;
+        text-shadow: 10px -8px 15px rgba(225, 255, 255, 0.1);
+        display: inline-block;
+        font-size: 5vh;
+        margin-left: 15vw;
+    }
+
+    .modal {
+        position: fixed;
+        z-index: 3;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(45deg,
+                hsl(240deg 100% 20%) 0%,
+                hsl(289deg 100% 21%) 11%,
+                hsl(315deg 100% 27%) 22%,
+                hsl(329deg 100% 36%) 33%,
+                hsl(337deg 100% 43%) 44%,
+                hsl(357deg 91% 59%) 56%,
+                hsl(17deg 100% 59%) 67%,
+                hsl(34deg 100% 53%) 78%,
+                hsl(45deg 100% 50%) 89%,
+                hsl(55deg 100% 50%) 100%);
+    }
+
+    .modal-content {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        width: 60vw;
+        height: 60vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        justify-content: center;
+        text-align: center;
+    }
+
+    .modal-button {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 10vh;
+        width: 50vw;
+        border: none;
+        border-radius: 16px;
+        text-align: center;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4ch;
+        transition-duration: 0.4s;
+        background: transparent;
+        box-shadow: 5px -8px 15px rgba(225, 255, 255, 0.1);
+        color: white;
+        background-color: transparent;
+        font-family: PlayFair;
+        outline: solid white 1px;
+
+    }
+
+    .modal-button:hover {
+        background: white;
+        color: black;
+        cursor: pointer;
+    }
+
+    .info {
+        font-size: 6ch;
+
+    }
+
+    .stats {
+        margin: 0;
+
+        display: block;
+
+        font-size: 5ch;
+    }
+
+    #winScreen {
+        display: none;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    #introTitle {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    #winInfo {
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+
+
+    .bettingPannel {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -20%);
+        height: 50vh;
+        width: 50vw;
+        z-index: 2;
+    }
+
+    .betting_output {
+        
+        font-size: 5rem;
+        text-align: end;
+        background: transparent;
+        color: hsl(255, 100%, 100%);
+        padding-block-start: 0.25rem;
+        padding-block-end: 0.25rem;
+        padding-inline-end: 0.75rem;
+        padding-bottom: 6rem;
+        height: 3vh;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border-radius: 16px;
+        margin-bottom: 3px;
+    }
+
+    .betting_keys {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        height: 80%;
+        gap: 1px;
+        background: transparent;
+        gap: 3px;
+    }
+
+
+
+    .bet_submit {
+        font-size: 3rem;
+        grid-column: 1/4;
+        color: white;
+        background-color: transparent;
+        border: none;
+        font-family: PlayFair;
+        background: rgba(189, 189, 189, 0.3);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        transition-duration: 0.4s;
+        border-radius: 16px;
+    }
+
+    .all_in {
+        font-size: 3rem;
+        grid-column: 1/3;
+        color: white;
+        background-color: transparent;
+        border: none;
+        font-family: PlayFair;
+        background: rgba(189, 189, 189, 0.3);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        transition-duration: 0.4s;
+        border-radius: 16px;
+        align-self: center;
+
+        height: 100%;
+    }
+
+    .betting_chip {
+        color: white;
+        background-color: transparent;
+        font-family: PlayFair;
+        font-size: 3rem;
+        border: none;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        transition-duration: 0.4s;
+        align-self: center;
+        height: 100%;
+        vertical-align: center;
+
+    }
+
+    .bet_clear {
+        color: white;
+        background-color: transparent;
+        border: none;
+        font-family: PlayFair;
+        font-size: 2rem;
+        background: rgba(189, 189, 189, 0.3);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        transition-duration: 0.4s;
+        border-radius: 16px;
+    }
+
+    .bet_clear:hover,
+    .bet_submit:hover,
+    .betting_chip:hover,
+    .all_in:hover {
+        background: rgba(255, 255, 255, 0.237);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+    }
+
+
+    #bankTotal {
+        display:inline;
+        font-size: 2rem;
+        margin-bottom: 0;
+
+    }
+
+    #possiblePayout {
+        font-size: 2rem;
+        display:inline;
+        margin-bottom: 0;
+    }
+
+    #bankInfo {
+        width: 90vw;
+        height: 15vh;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -300%);
+        z-index: 2;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        color: hsl(0, 0%, 100%);
+        border-radius: 16px;
+        padding-bottom: 10px;
+    
+
+    }
+
+    .bankLabel {
+        font-family: PlayFair;
+        margin-bottom: 0;
+        font-size: 2rem;
+        display:inline;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(3px);
+        z-index: 1;
+
+    }
+    .hidden {
+        display: none;
+    }
+}
